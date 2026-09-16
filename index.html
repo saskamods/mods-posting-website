@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModsHub - Platform Berbagi Mods</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-puzzle-piece"></i>
+                <span>ModsHub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#mods" class="nav-link">Mods</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#" class="nav-link btn-upload">+ Upload</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Temukan & Bagikan Mods Terbaik</h1>
+            <p>Platform komunitas untuk semua pecinta modifikasi aplikasi dan game</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('mods')">Jelajahi Mods</button>
+                <button class="btn btn-secondary" onclick="openUploadModal()">Upload Mods</button>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari mods..." onkeyup="filterMods()">
+            </div>
+            <div class="filter-tags">
+                <span class="filter-tag active" data-filter="all" onclick="filterByCategory(this)">Semua</span>
+                <span class="filter-tag" data-filter="game" onclick="filterByCategory(this)">Game</span>
+                <span class="filter-tag" data-filter="app" onclick="filterByCategory(this)">Aplikasi</span>
+                <span class="filter-tag" data-filter="ui" onclick="filterByCategory(this)">UI/Theme</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mods Grid -->
+    <section class="mods-section" id="mods">
+        <div class="container">
+            <h2>Koleksi Mods Populer</h2>
+            <div class="mods-grid" id="modsGrid">
+                <!-- Mods akan ditampilkan di sini dengan JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2>Tentang ModsHub</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>ModsHub adalah platform komunitas terbuka untuk berbagi dan menemukan modifikasi aplikasi dan game terbaik. Kami menyediakan tempat yang aman, mudah, dan menyenangkan untuk semua penggemar modifikasi.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Cepat & Mudah</h4>
+                            <p>Upload dan bagikan mods Anda dalam hitungan menit</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Aman & Terpercaya</h4>
+                            <p>Semua mods diverifikasi oleh komunitas</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Komunitas Aktif</h4>
+                            <p>Bergabung dengan ribuan pengguna lain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Upload -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Mods Baru</h2>
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-group">
+                    <label for="modName">Nama Mods</label>
+                    <input type="text" id="modName" required>
+                </div>
+                <div class="form-group">
+                    <label for="modCategory">Kategori</label>
+                    <select id="modCategory" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="game">Game</option>
+                        <option value="app">Aplikasi</option>
+                        <option value="ui">UI/Theme</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modDescription">Deskripsi</label>
+                    <textarea id="modDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="modAuthor">Nama Pembuat</label>
+                    <input type="text" id="modAuthor" required>
+                </div>
+                <div class="form-group">
+                    <label for="modDownload">Link Download</label>
+                    <input type="url" id="modDownload" required>
+                </div>
+                <div class="form-group">
+                    <label for="modImage">URL Gambar Thumbnail</label>
+                    <input type="url" id="modImage" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Upload Mods</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ModsHub. Dibuat dengan <i class="fas fa-heart"></i> oleh Komunitas</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
